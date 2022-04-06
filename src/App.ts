@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 
-import database from './infra/mongo/index';
+import database from './infra/mongo';
 import routes from './routes';
 
 class App {
