@@ -6,7 +6,7 @@ class Database {
       const URI: string = process.env.DATABASE_URI;
 
       await mongoose.connect(URI);
-      console.log('Connected to database');
+      console.log('connected to database');
     } catch (error) {
       console.log(error.message);
     }

@@ -19,6 +19,7 @@
     "express": "^4.17.3",
     "joi": "^17.6.0",
     "mongoose": "^6.2.10",
+    "mongoose-paginate-v2": "^1.6.3",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
