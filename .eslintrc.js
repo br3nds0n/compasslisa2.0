@@ -11,6 +11,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  plugins: [
+    '@typescript-eslint',
+  ],
   rules: {
     'class-methods-use-this': 'off',
     'import/no-unresolved': 'off',
