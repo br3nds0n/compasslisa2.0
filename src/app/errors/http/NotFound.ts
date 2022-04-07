@@ -1,8 +1,8 @@
 import HttpError from '../HttpError';
 
 class NotFound extends HttpError {
-  constructor() {
-    super();
+  constructor(message) {
+    super(404, message);
   }
 }
 

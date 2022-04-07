@@ -1,8 +1,8 @@
 import HttpError from '../HttpError';
 
 class Unauthorized extends HttpError {
-  constructor() {
-    super();
+  constructor(message) {
+    super(401, message);
   }
 }
 

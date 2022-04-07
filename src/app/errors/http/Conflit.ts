@@ -1,8 +1,8 @@
 import HttpError from '../HttpError';
 
 class Conflit extends HttpError {
-  constructor() {
-    super();
+  constructor(message) {
+    super(409, message);
   }
 }
 
