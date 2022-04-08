@@ -1,11 +1,8 @@
 import { Router } from 'express';
 import { attachControllers } from '@decorators/express';
 
-/*
-
-  import controllers
-
-*/
+import CarController from '../../app/controller/CarController';
+import PersonRepository from '../../app/repository/PersonRepository';
 
 class RoutesV1 {
   static v1(): Router {
@@ -14,9 +11,8 @@ class RoutesV1 {
     attachControllers(
       router,
       [
-        /*
-          Controller
-        */
+        CarController,
+        PersonRepository,
       ],
     );
     return router;
