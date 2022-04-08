@@ -1,7 +1,8 @@
 import express, { Express } from 'express';
 
-import database from './infra/mongo';
+import database from './infra/database/mongo';
 import routes from './routes';
+import ErrorHandle from './app/middlewares/ErrorHandle';
 
 class App {
   readonly express: Express;
@@ -11,6 +12,7 @@ class App {
 
     this.middlewares();
     this.routes();
+    this.errorHandler();
   }
 
   static async init() {
@@ -27,6 +29,10 @@ class App {
 
   routes(): void {
     this.express.use('/api', routes.init());
+  }
+
+  errorHandler(): void {
+    this.express.use(ErrorHandle);
   }
 }
 
