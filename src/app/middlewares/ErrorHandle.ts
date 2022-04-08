@@ -4,12 +4,13 @@ export default function (error, req, res, next) {
   if (error instanceof HttpError) {
     res.status(error.statusCode).json({
       name: error.name,
-      message: error.message,
+      description: error.message,
     });
     next();
   } else {
     res.status(500).json({
-      message: 'internal server Error',
+      name: 'internal server Error',
+      description: error.message,
     });
   }
 }
