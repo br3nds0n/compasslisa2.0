@@ -3,32 +3,38 @@ import paginate from 'mongoose-paginate-v2';
 
 import { ICar } from '../interfaces/Car/ICar';
 
-const CAR_MODEL: Schema = new Schema({
+const CAR_MODEL: Schema = new Schema(
+  {
 
-  modelo: {
-    type: String,
-    required: true,
-  },
-  cor: {
-    type: String,
-    required: true,
-  },
-  ano: {
-    type: String,
-    required: true,
-  },
-  acessorios: [{
-    descricao: {
+    modelo: {
       type: String,
       required: true,
     },
-  }],
-  quantidadePassageiros: {
-    type: Number,
-    required: true,
-  },
+    cor: {
+      type: String,
+      required: true,
+    },
+    ano: {
+      type: String,
+      required: true,
+    },
+    acessorios: [{
+      descricao: {
+        type: String,
+        required: true,
+      },
+    }],
+    quantidadePassageiros: {
+      type: Number,
+      min: 1,
+      required: true,
+    },
 
-});
+  },
+  {
+    versionKey: false,
+  },
+);
 
 CAR_MODEL.plugin(paginate);
 
