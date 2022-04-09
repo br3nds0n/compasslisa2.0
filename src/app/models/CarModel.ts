@@ -25,6 +25,7 @@ const CAR_MODEL: Schema = new Schema({
   }],
   quantidadePassageiros: {
     type: Number,
+    min: 1,
     required: true,
   },
 

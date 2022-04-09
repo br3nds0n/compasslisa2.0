@@ -13,6 +13,12 @@ class CarService implements ICarService {
   constructor(@Inject(CarRepository) carRepository: ICarRepository) {
     this.carRepository = carRepository;
   }
+
+  async create(car: ICar): Promise<ICar> {
+    const NEW_CAR = await this.carRepository.create(car);
+
+    return NEW_CAR;
+  }
 }
 
 export default CarService;
