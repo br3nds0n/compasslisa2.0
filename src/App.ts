@@ -5,7 +5,7 @@ import routes from './routes';
 import ErrorHandle from './app/middlewares/ErrorHandle';
 
 class App {
-  readonly express: Express;
+  private express: Express;
 
   constructor() {
     this.express = express();
@@ -15,23 +15,23 @@ class App {
     this.errorHandler();
   }
 
-  static async init() {
+  static async start() {
     const app: App = new App();
     await database.connect();
 
     return app.express;
   }
 
-  middlewares(): void {
+  private middlewares(): void {
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
   }
 
-  routes(): void {
+  private routes(): void {
     this.express.use('/api', routes.init());
   }
 
-  errorHandler(): void {
+  private errorHandler(): void {
     this.express.use(ErrorHandle);
   }
 }

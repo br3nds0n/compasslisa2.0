@@ -8,7 +8,7 @@ import { ICarService } from '../interfaces/Car/ICarService';
 
 @Injectable()
 class CarService implements ICarService {
-  private readonly carRepository: ICarRepository;
+  private carRepository: ICarRepository;
 
   constructor(@Inject(CarRepository) carRepository: ICarRepository) {
     this.carRepository = carRepository;

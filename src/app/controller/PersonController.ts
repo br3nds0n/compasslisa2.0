@@ -9,7 +9,7 @@ import { IPersonService } from '../interfaces/Person/IPersonService';
 
 @Controller('/people')
 class PersonController {
-  private readonly personService: IPersonService;
+  private personService: IPersonService;
 
   constructor(@Inject(PersonService) personService: IPersonService) {
     this.personService = personService;

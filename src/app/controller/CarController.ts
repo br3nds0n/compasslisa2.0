@@ -11,7 +11,7 @@ import ValidationBodyCar from '../validation/Car/ValidationBodyCar';
 
 @Controller('/car')
 class CarController {
-  private readonly carService: ICarService;
+  private carService: ICarService;
 
   constructor(@Inject(CarService) carService: ICarService) {
     this.carService = carService;

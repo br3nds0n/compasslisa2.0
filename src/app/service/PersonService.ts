@@ -8,7 +8,7 @@ import { IPersonService } from '../interfaces/Person/IPersonService';
 
 @Injectable()
 class PersonService implements IPersonService {
-  private readonly personRepository: IPersonRepository;
+  private personRepository: IPersonRepository;
 
   constructor(@Inject(PersonRepository) personRepository: IPersonRepository) {
     this.personRepository = personRepository;
