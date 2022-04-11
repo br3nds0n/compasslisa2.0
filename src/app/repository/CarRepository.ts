@@ -18,6 +18,12 @@ class CarRepository implements ICarRepository {
 
     return ALL_CARS;
   }
+
+  async readID(id: string): Promise<ICar> {
+    const ID_CAR = await CarModel.findById(id);
+
+    return ID_CAR;
+  }
 }
 
 export default CarRepository;

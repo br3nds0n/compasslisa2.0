@@ -9,6 +9,7 @@ import { ICarService } from '../interfaces/Car/ICarService';
 
 import ValidationBodyCar from '../validation/Car/ValidationBodyCar';
 import ValidationQueryCar from '../validation/Car/ValidationQueryCar';
+import ValidationParamsID from '../validation/ValidationParamsID';
 
 @Controller('/car')
 class CarController {
@@ -39,6 +40,23 @@ class CarController {
   async read(req: Request, res: Response): Promise<Response> {
     try {
       const RESULT = await this.carService.read();
+
+      return res.status(200).json(RESULT);
+    } catch (error) {
+      return res.status(400).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Get('/:id', [ValidationParamsID, ValidationQueryCar])
+  async readID(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const RESULT = await this.carService.readID(id);
 
       return res.status(200).json(RESULT);
     } catch (error) {

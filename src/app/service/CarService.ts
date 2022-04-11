@@ -25,6 +25,12 @@ class CarService implements ICarService {
 
     return ALL_CARS;
   }
+
+  async readID(id: string): Promise<ICar> {
+    const ID_CAR = await this.carRepository.readID(id);
+
+    return ID_CAR;
+  }
 }
 
 export default CarService;
