@@ -15,15 +15,27 @@ class CarService implements ICarService {
   }
 
   async create(car: ICar): Promise<ICar> {
-    const NEW_CAR = await this.carRepository.create(car);
+    const NEW_CAR: ICar = await this.carRepository.create(car);
 
     return NEW_CAR;
   }
 
   async read(): Promise<ICar | ICar[]> {
-    const ALL_CARS = await this.carRepository.read();
+    const ALL_CARS: ICar | ICar[] = await this.carRepository.read();
 
     return ALL_CARS;
+  }
+
+  async readID(id: string): Promise<ICar> {
+    const ID_CAR: ICar = await this.carRepository.readID(id);
+
+    return ID_CAR;
+  }
+
+  async update(id: string, NewBody: ICar): Promise<ICar> {
+    const NEW_CAR: ICar = await this.carRepository.update(id, NewBody);
+
+    return NEW_CAR;
   }
 }
 
