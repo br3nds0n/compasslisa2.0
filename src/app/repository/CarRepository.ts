@@ -30,6 +30,12 @@ class CarRepository implements ICarRepository {
 
     return NEW_BODY;
   }
+
+  async delete(id: string): Promise<ICar> {
+    const DELETE_CAR = await CarModel.findByIdAndDelete(id);
+
+    return DELETE_CAR;
+  }
 }
 
 export default CarRepository;

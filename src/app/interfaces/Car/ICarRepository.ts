@@ -5,4 +5,5 @@ export interface ICarRepository {
   read: () => Promise<ICar | ICar[]>
   readID: (id: string) => Promise<ICar>
   update: (id: string, NewBody: ICar) => Promise<ICar>
+  delete: (id: string) => Promise<ICar>
 }
