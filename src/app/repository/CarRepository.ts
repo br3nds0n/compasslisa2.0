@@ -13,8 +13,8 @@ class CarRepository implements ICarRepository {
     return NEW_CAR;
   }
 
-  async read(): Promise<ICar | ICar[]> {
-    const ALL_CARS = await CarModel.find();
+  async read(payload): Promise<ICar | ICar[]> {
+    const ALL_CARS = await CarModel.find(payload);
 
     return ALL_CARS;
   }
@@ -29,6 +29,12 @@ class CarRepository implements ICarRepository {
     const NEW_BODY = await CarModel.findByIdAndUpdate(id, NewBody);
 
     return NEW_BODY;
+  }
+
+  async delete(id: string): Promise<ICar> {
+    const DELETE_CAR = await CarModel.findByIdAndDelete(id);
+
+    return DELETE_CAR;
   }
 }
 

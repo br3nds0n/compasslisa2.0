@@ -20,8 +20,8 @@ class CarService implements ICarService {
     return NEW_CAR;
   }
 
-  async read(): Promise<ICar | ICar[]> {
-    const ALL_CARS: ICar | ICar[] = await this.carRepository.read();
+  async read(payload): Promise<ICar | ICar[]> {
+    const ALL_CARS: ICar | ICar[] = await this.carRepository.read(payload);
 
     return ALL_CARS;
   }
@@ -36,6 +36,12 @@ class CarService implements ICarService {
     const NEW_CAR: ICar = await this.carRepository.update(id, NewBody);
 
     return NEW_CAR;
+  }
+
+  async delete(id: string): Promise<ICar> {
+    const DELETE_CAR: ICar = await this.carRepository.delete(id);
+
+    return DELETE_CAR;
   }
 }
 
