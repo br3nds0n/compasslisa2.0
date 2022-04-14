@@ -20,8 +20,8 @@ class CarService implements ICarService {
     return NEW_CAR;
   }
 
-  async read(): Promise<ICar | ICar[]> {
-    const ALL_CARS: ICar | ICar[] = await this.carRepository.read();
+  async read(payload): Promise<ICar | ICar[]> {
+    const ALL_CARS: ICar | ICar[] = await this.carRepository.read(payload);
 
     return ALL_CARS;
   }

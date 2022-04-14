@@ -41,7 +41,8 @@ class CarController {
   @Get('/', [ValidationQueryCar])
   async read(req: Request, res: Response): Promise<Response> {
     try {
-      const RESULT: ICar | ICar[] = await this.carService.read();
+      const PAYLOAD = req.query;
+      const RESULT: ICar | ICar[] = await this.carService.read(PAYLOAD);
 
       return res.status(200).json(RESULT);
     } catch (error) {

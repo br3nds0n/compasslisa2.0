@@ -13,8 +13,8 @@ class CarRepository implements ICarRepository {
     return NEW_CAR;
   }
 
-  async read(): Promise<ICar | ICar[]> {
-    const ALL_CARS = await CarModel.find();
+  async read(payload): Promise<ICar | ICar[]> {
+    const ALL_CARS = await CarModel.find(payload);
 
     return ALL_CARS;
   }
