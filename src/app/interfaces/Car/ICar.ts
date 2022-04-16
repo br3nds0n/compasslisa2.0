@@ -3,6 +3,10 @@ export interface ICar {
   modelo: string
   cor: string
   ano: string
-  acessoririos: []
+  acessoririos: [
+    {
+      descricao: string
+    }
+  ]
   quantidadePassageiros: Number
 }
