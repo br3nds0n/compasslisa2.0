@@ -6,4 +6,5 @@ export interface ICarService {
   readID: (id: string) => Promise<ICar>
   update: (id: string, NewBody: ICar) => Promise<ICar>
   delete: (id: string) => Promise<ICar>
+  updateAccessory: (id: string, accessoryId: string, payload)=> Promise<ICar>
 }

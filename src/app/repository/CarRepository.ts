@@ -36,6 +36,15 @@ class CarRepository implements ICarRepository {
 
     return DELETE_CAR;
   }
+
+  async updateAccessory(id: string, accessoryId: string, payload): Promise<ICar> {
+    const NEW_ACCESSORY = await CarModel.findByIdAndUpdate(
+      id,
+      { $set: { 'acessorios.$[outer].descricao': payload.descricao } },
+      { arrayFilters: [{ 'outer._id': accessoryId }] },
+    );
+    return NEW_ACCESSORY;
+  }
 }
 
 export default CarRepository;
