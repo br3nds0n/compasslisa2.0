@@ -13,6 +13,12 @@ class PersonService implements IPersonService {
   constructor(@Inject(PersonRepository) personRepository: IPersonRepository) {
     this.personRepository = personRepository;
   }
+
+  async create(person: IPerson): Promise<IPerson> {
+    const NEW_PERSON = await this.personRepository.create(person);
+
+    return NEW_PERSON;
+  }
 }
 
 export default PersonService;
