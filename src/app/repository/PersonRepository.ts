@@ -7,7 +7,11 @@ import { IPersonRepository } from '../interfaces/Person/IPersonRepository';
 
 @Injectable()
 class PersonRepository implements IPersonRepository {
+  async create(person: IPerson): Promise<IPerson> {
+    const NEW_PERSON = await PersonModel.create(person);
 
+    return NEW_PERSON;
+  }
 }
 
 export default PersonRepository;
