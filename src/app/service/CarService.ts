@@ -45,7 +45,7 @@ class CarService implements ICarService {
   }
 
   async updateAccessory(id: string, accessoryId: string, payload): Promise<ICar> {
-    const NEW_ACCESSORY = await this.carRepository.updateAccessory(id, accessoryId, payload);
+    const NEW_ACCESSORY: ICar = await this.carRepository.updateAccessory(id, accessoryId, payload);
 
     return NEW_ACCESSORY;
   }

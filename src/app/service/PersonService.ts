@@ -15,15 +15,21 @@ class PersonService implements IPersonService {
   }
 
   async create(person: IPerson): Promise<IPerson> {
-    const NEW_PERSON = await this.personRepository.create(person);
+    const NEW_PERSON: IPerson = await this.personRepository.create(person);
 
     return NEW_PERSON;
   }
 
   async read(payload): Promise<IPerson | IPerson[]> {
-    const ALL_PEOPLE = await this.personRepository.read(payload);
+    const ALL_PEOPLE: IPerson | IPerson[] = await this.personRepository.read(payload);
 
     return ALL_PEOPLE;
+  }
+
+  async readID(id: string): Promise<IPerson> {
+    const ID_PERSON: IPerson = await this.personRepository.readID(id);
+
+    return ID_PERSON;
   }
 }
 
