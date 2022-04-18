@@ -24,6 +24,12 @@ class PersonRepository implements IPersonRepository {
 
     return ID_PERSON;
   }
+
+  async update(id: string, payload: IPerson): Promise<IPerson> {
+    const NEW_PERSON = await PersonModel.findByIdAndUpdate(id, payload);
+
+    return NEW_PERSON;
+  }
 }
 
 export default PersonRepository;

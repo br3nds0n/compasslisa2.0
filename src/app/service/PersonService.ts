@@ -31,6 +31,12 @@ class PersonService implements IPersonService {
 
     return ID_PERSON;
   }
+
+  async update(id: string, payload: IPerson): Promise<IPerson> {
+    const NEW_PERSON: IPerson = await this.personRepository.update(id, payload);
+
+    return NEW_PERSON;
+  }
 }
 
 export default PersonService;
