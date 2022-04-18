@@ -37,6 +37,12 @@ class PersonService implements IPersonService {
 
     return NEW_PERSON;
   }
+
+  async delete(id: string): Promise<IPerson> {
+    const DELETE_PERSON: IPerson = await this.personRepository.delete(id);
+
+    return DELETE_PERSON;
+  }
 }
 
 export default PersonService;

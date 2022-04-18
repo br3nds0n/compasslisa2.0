@@ -30,6 +30,12 @@ class PersonRepository implements IPersonRepository {
 
     return NEW_PERSON;
   }
+
+  async delete(id: string): Promise<IPerson> {
+    const DELETE_PERSON = await PersonModel.findByIdAndDelete(id);
+
+    return DELETE_PERSON;
+  }
 }
 
 export default PersonRepository;
