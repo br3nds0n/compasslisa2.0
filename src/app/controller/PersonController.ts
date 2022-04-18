@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Controller, Post } from '@decorators/express';
+import { Controller, Post, Get } from '@decorators/express';
 import { Inject } from '@decorators/di';
 
 import PersonService from '../service/PersonService';
@@ -22,6 +22,23 @@ class PersonController {
       const RESULT: IPerson = await this.personService.create(PERSON);
 
       return res.status(201).json(RESULT);
+    } catch (error) {
+      return res.status(400).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Get('/')
+  async read(req: Request, res: Response): Promise<Response> {
+    try {
+      const PAYLOAD = req.query;
+      const RESULT: IPerson | IPerson[] = await this.personService.read(PAYLOAD);
+
+      return res.status(200).json(RESULT);
     } catch (error) {
       return res.status(400).json({
         details: {

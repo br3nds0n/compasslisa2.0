@@ -19,6 +19,12 @@ class PersonService implements IPersonService {
 
     return NEW_PERSON;
   }
+
+  async read(payload): Promise<IPerson | IPerson[]> {
+    const ALL_PEOPLE = await this.personRepository.read(payload);
+
+    return ALL_PEOPLE;
+  }
 }
 
 export default PersonService;
