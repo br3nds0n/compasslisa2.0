@@ -12,6 +12,12 @@ class PersonRepository implements IPersonRepository {
 
     return NEW_PERSON;
   }
+
+  async read(payload): Promise<IPerson | IPerson[]> {
+    const ALL_PEOPLE = await PersonModel.find(payload);
+
+    return ALL_PEOPLE;
+  }
 }
 
 export default PersonRepository;
