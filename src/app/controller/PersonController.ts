@@ -48,6 +48,23 @@ class PersonController {
       });
     }
   }
+
+  @Get('/:id')
+  async readID(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const RESULT: IPerson = await this.personService.readID(id);
+
+      return res.status(200).json(RESULT);
+    } catch (error) {
+      return res.status(400).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
 }
 
 export default PersonController;

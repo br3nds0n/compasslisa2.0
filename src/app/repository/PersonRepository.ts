@@ -18,6 +18,12 @@ class PersonRepository implements IPersonRepository {
 
     return ALL_PEOPLE;
   }
+
+  async readID(id: string): Promise<IPerson> {
+    const ID_PERSON = await PersonModel.findById(id);
+
+    return ID_PERSON;
+  }
 }
 
 export default PersonRepository;
