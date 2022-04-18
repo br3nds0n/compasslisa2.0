@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import { Controller, Post, Get } from '@decorators/express';
+import {
+  Controller, Post, Get, Put,
+} from '@decorators/express';
 import { Inject } from '@decorators/di';
 
 import PersonService from '../service/PersonService';
@@ -54,6 +56,25 @@ class PersonController {
     try {
       const { id } = req.params;
       const RESULT: IPerson = await this.personService.readID(id);
+
+      return res.status(200).json(RESULT);
+    } catch (error) {
+      return res.status(400).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Put('/:id')
+  async update(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const PAYLOAD: IPerson = req.body;
+
+      const RESULT: IPerson = await this.personService.update(id, PAYLOAD);
 
       return res.status(200).json(RESULT);
     } catch (error) {
