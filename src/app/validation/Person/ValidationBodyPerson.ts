@@ -4,28 +4,27 @@ import Date from '@joi/date';
 import { NextFunction, Response, Request } from 'express';
 import { Middleware } from '@decorators/express';
 
-import { ICar } from '../../interfaces/Car/ICar';
+import { IPerson } from '../../interfaces/Person/IPerson';
+import domain from '../../utils/constants/isDomain';
+import able from '../../utils/constants/isAble';
 
 const JOI: Joi.Root = Joi.extend(Date) as typeof Joi;
 
-class ValidationBodyCar implements Middleware {
+class ValidationBodyPerson implements Middleware {
   async use(req: Request, res: Response, next: NextFunction): Promise<void | Response> {
     try {
-      const validation: ObjectSchema<ICar> = JOI.object({
-        modelo: JOI.string().min(3).max(20).trim()
+      const validation: ObjectSchema<IPerson> = JOI.object({
+        nome: JOI.string().min(3).trim().required(),
+        cpf: JOI.string().trim().min(11).max(11)
           .required(),
-        cor: JOI.string().min(3).max(20).trim()
-          .required(),
-        ano: JOI.date().format('YYYY').min('1950-01-01').max('2022-12-31')
-          .required(),
-        acessorios: JOI.array()
-          .min(1)
-          .items(JOI.object({ descricao: JOI.string().trim().required() }))
-          .required()
-          .unique('descricao'),
-        quantidadePassageiros: JOI.number().integer().min(1).max(5)
-          .required(),
+        data_nascimento: JOI.date().format('DD/MM/YYYY').max('now').required(),
+        email: JOI.string().trim().email({
+          minDomainSegments: 2,
+          tlds: { allow: domain },
+        }).required(),
+        habilitado: JOI.string().trim().valid(able).required(),
       });
+
       const { error } = await validation.validate(req.body, {
         abortEarly: false,
         allowUnknown: false,
@@ -45,4 +44,4 @@ class ValidationBodyCar implements Middleware {
   }
 }
 
-export default ValidationBodyCar;
+export default ValidationBodyPerson;

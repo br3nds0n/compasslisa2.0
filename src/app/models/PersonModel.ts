@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import paginate from 'mongoose-paginate-v2';
 
 import { IPerson } from '../interfaces/Person/IPerson';
-import habilitado from '../utils/constants/isAble';
+import able from '../utils/constants/isAble';
 
 const PERSON_MODEL: Schema = new Schema(
   {
@@ -32,7 +32,7 @@ const PERSON_MODEL: Schema = new Schema(
     },
     habilitado: {
       type: String,
-      enum: habilitado,
+      enum: able,
       required: true,
     },
 
