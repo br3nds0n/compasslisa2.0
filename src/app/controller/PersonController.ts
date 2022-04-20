@@ -9,6 +9,10 @@ import PersonService from '../service/PersonService';
 import { IPerson } from '../interfaces/Person/IPerson';
 import { IPersonService } from '../interfaces/Person/IPersonService';
 
+import ValidationBodyPerson from '../validation/Person/ValidationBodyPerson';
+import ValidationQueryPerson from '../validation/Person/ValidationQueryPerson';
+import ValidationParamsID from '../validation/ValidationParamsID';
+
 @Controller('/people')
 class PersonController {
   private personService: IPersonService;
@@ -17,7 +21,7 @@ class PersonController {
     this.personService = personService;
   }
 
-  @Post('/')
+  @Post('/', [ValidationBodyPerson])
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const PERSON: IPerson = req.body;
@@ -34,7 +38,7 @@ class PersonController {
     }
   }
 
-  @Get('/')
+  @Get('/', [ValidationQueryPerson])
   async read(req: Request, res: Response): Promise<Response> {
     try {
       const PAYLOAD = req.query;
@@ -51,7 +55,7 @@ class PersonController {
     }
   }
 
-  @Get('/:id')
+  @Get('/:id', [ValidationParamsID])
   async readID(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -68,7 +72,7 @@ class PersonController {
     }
   }
 
-  @Put('/:id')
+  @Put('/:id', [ValidationParamsID, ValidationBodyPerson])
   async update(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -87,7 +91,7 @@ class PersonController {
     }
   }
 
-  @Delete('/:id')
+  @Delete('/:id', [ValidationParamsID])
   async delete(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;

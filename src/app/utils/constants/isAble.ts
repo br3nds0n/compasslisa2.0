@@ -1,6 +1,6 @@
-enum habilitado {
+enum able {
   'sim',
   'não'
 }
 
-export default habilitado;
+export default able;
