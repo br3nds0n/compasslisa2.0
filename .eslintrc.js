@@ -22,5 +22,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
     'no-console': 'off',
+    'no-underscore-dangle': 'off',
   },
 };

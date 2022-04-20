@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import bcrypt from 'bcrypt';
 import paginate from 'mongoose-paginate-v2';
 
 import { IPerson } from '../interfaces/Person/IPerson';
@@ -43,6 +44,13 @@ const PERSON_MODEL: Schema = new Schema(
 );
 
 PERSON_MODEL.plugin(paginate);
+
+PERSON_MODEL.pre('save', async function (next): Promise<void> {
+  const hash: string = await bcrypt.hash(this.senha, 10);
+  this.senha = hash;
+
+  next();
+});
 
 const PERSON = model<IPerson>('Pessoas', PERSON_MODEL);
 

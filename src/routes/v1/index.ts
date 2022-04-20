@@ -2,7 +2,8 @@ import { Router } from 'express';
 import { attachControllers } from '@decorators/express';
 
 import CarController from '../../app/controller/CarController';
-import PersonRepository from '../../app/repository/PersonRepository';
+import PersonController from '../../app/controller/PersonController';
+import AuthController from '../../app/controller/AuthController';
 
 class RoutesV1 {
   static v1(): Router {
@@ -12,7 +13,8 @@ class RoutesV1 {
       router,
       [
         CarController,
-        PersonRepository,
+        PersonController,
+        AuthController,
       ],
     );
     return router;
