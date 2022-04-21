@@ -30,7 +30,7 @@ class CarController {
 
       return res.status(201).json(RESULT);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode).json({
         details: {
           name: error.name,
           description: error.message,
@@ -47,7 +47,7 @@ class CarController {
 
       return res.status(200).json(RESULT);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode).json({
         details: {
           name: error.name,
           description: error.message,
@@ -64,7 +64,7 @@ class CarController {
 
       return res.status(200).json(RESULT);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode).json({
         details: {
           name: error.name,
           description: error.message,
@@ -83,7 +83,7 @@ class CarController {
 
       return res.status(200).json(RESULT);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode).json({
         details: {
           name: error.name,
           description: error.message,
@@ -100,7 +100,7 @@ class CarController {
 
       return res.status(204).json(RESULT);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode).json({
         details: {
           name: error.name,
           description: error.message,
@@ -119,7 +119,7 @@ class CarController {
 
       return res.status(200).json(RESULT);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode).json({
         details: {
           name: error.name,
           description: error.message,

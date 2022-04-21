@@ -22,7 +22,8 @@ class ValidationBodyPerson implements Middleware {
           minDomainSegments: 2,
           tlds: { allow: domain },
         }).required(),
-        habilitado: JOI.string().trim().valid(able).required(),
+        senha: JOI.string().min(6).trim().required(),
+        habilitado: JOI.string().trim().valid(...Object.values(able)).required(),
       });
 
       const { error } = await validation.validate(req.body, {
