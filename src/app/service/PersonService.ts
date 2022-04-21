@@ -6,6 +6,8 @@ import { IPerson } from '../interfaces/Person/IPerson';
 import { IPersonRepository } from '../interfaces/Person/IPersonRepository';
 import { IPersonService } from '../interfaces/Person/IPersonService';
 
+import IsConflit from '../utils/rules/isConflit';
+
 @Injectable()
 class PersonService implements IPersonService {
   private personRepository: IPersonRepository;
@@ -15,6 +17,11 @@ class PersonService implements IPersonService {
   }
 
   async create(person: IPerson): Promise<IPerson> {
+    await IsConflit.isMajority(person.data_nascimento);
+    await IsConflit.validCpf(person.cpf);
+    await IsConflit.conflictCpf(person.cpf);
+    await IsConflit.conflictEmail(person.email);
+
     const NEW_PERSON: IPerson = await this.personRepository.create(person);
 
     return NEW_PERSON;
