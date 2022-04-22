@@ -7,6 +7,7 @@ import { IPersonRepository } from '../interfaces/Person/IPersonRepository';
 import { IPersonService } from '../interfaces/Person/IPersonService';
 
 import IsConflit from '../utils/rules/isConflit';
+import NotFound from '../errors/http/NotFound';
 
 @Injectable()
 class PersonService implements IPersonService {
@@ -36,17 +37,29 @@ class PersonService implements IPersonService {
   async readID(id: string): Promise<IPerson> {
     const ID_PERSON: IPerson = await this.personRepository.readID(id);
 
+    if (!ID_PERSON) {
+      throw new NotFound(`person of id '${id}' not found`);
+    }
+
     return ID_PERSON;
   }
 
   async update(id: string, payload: IPerson): Promise<IPerson> {
     const NEW_PERSON: IPerson = await this.personRepository.update(id, payload);
 
+    if (!NEW_PERSON) {
+      throw new NotFound(`person of id '${id}' not found`);
+    }
+
     return NEW_PERSON;
   }
 
   async delete(id: string): Promise<IPerson> {
     const DELETE_PERSON: IPerson = await this.personRepository.delete(id);
+
+    if (!DELETE_PERSON) {
+      throw new NotFound(`person of id '${id}' not found`);
+    }
 
     return DELETE_PERSON;
   }
