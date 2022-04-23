@@ -14,7 +14,9 @@ import ValidationQueryCar from '../validation/Car/ValidationQueryCar';
 import ValidationParamsID from '../validation/ValidationParamsID';
 import ValidationPatchCar from '../validation/Car/ValidationPatchCar';
 
-@Controller('/car')
+import TokenBerer from '../middlewares/TokenBerer';
+
+@Controller('/car', [TokenBerer])
 class CarController {
   private carService: ICarService;
 
