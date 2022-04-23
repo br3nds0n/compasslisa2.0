@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import auth from '../config/authenticate.json';
 import Unauthorized from '../errors/http/Unauthorized';
 
-class TokenBerer implements Middleware {
+class TokenBearer implements Middleware {
   use(req: Request, res: Response, next: NextFunction): void {
     try {
       const TOKEN: string = req.headers.authorization.split(' ')[1];
@@ -18,4 +18,4 @@ class TokenBerer implements Middleware {
   }
 }
 
-export default TokenBerer;
+export default TokenBearer;
