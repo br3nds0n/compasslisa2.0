@@ -18,6 +18,18 @@ class RentalRepository implements IRentalRepository {
 
     return NEW_RENTAL;
   }
+
+  async read(payload): Promise<IRental | IRental[]> {
+    const ALL_RENTAL = await this.rentalRepository.find(payload);
+
+    return ALL_RENTAL;
+  }
+
+  async readID(id: string): Promise<IRental> {
+    const ID_RENTAL = await this.rentalRepository.findById(id);
+
+    return ID_RENTAL;
+  }
 }
 
 export default RentalRepository;
