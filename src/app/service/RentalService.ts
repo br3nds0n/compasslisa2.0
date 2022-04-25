@@ -24,9 +24,15 @@ class RentalService implements IRentalService {
 
     await ViaCep.getCep(payload.endereco);
 
-    const NEW_RENTAL = await this.rentalRepository.create(payload);
+    const NEW_RENTAL: IRental = await this.rentalRepository.create(payload);
 
     return NEW_RENTAL;
+  }
+
+  async read(payload): Promise<IRental | IRental[]> {
+    const ALL_RENTAL: IRental | IRental[] = await this.rentalRepository.read(payload);
+
+    return ALL_RENTAL;
   }
 }
 
