@@ -12,6 +12,12 @@ class RentalRepository implements IRentalRepository {
   constructor() {
     this.rentalRepository = RentalModel;
   }
+
+  async create(payload: IRental): Promise<IRental> {
+    const NEW_RENTAL = await this.rentalRepository.create(payload);
+
+    return NEW_RENTAL;
+  }
 }
 
 export default RentalRepository;

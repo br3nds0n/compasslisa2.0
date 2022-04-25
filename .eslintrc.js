@@ -25,5 +25,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     eqeqeq: 'off',
     'no-plusplus': 'off',
+    'no-await-in-loop': 'off',
   },
 };

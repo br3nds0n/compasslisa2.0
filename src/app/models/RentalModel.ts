@@ -43,6 +43,6 @@ const RENTAL_MODEL: Schema = new Schema(
 
 RENTAL_MODEL.plugin(paginate);
 
-const CAR = model<IRental>('Veiculos', RENTAL_MODEL);
+const CAR = model<IRental>('Locadora', RENTAL_MODEL);
 
 export default CAR;
