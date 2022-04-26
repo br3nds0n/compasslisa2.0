@@ -9,6 +9,10 @@ import RentalService from '../service/RentalService';
 import { IRental } from '../interfaces/Rental/IRental';
 import { IRentalService } from '../interfaces/Rental/IRentalService';
 
+import validationBodyRental from '../validation/Rental/ValidationBodyRental';
+import validationQueryRental from '../validation/Rental/ValidationQueryRental';
+import ValidationParamsID from '../validation/ValidationParamsID';
+
 @Controller('/rental')
 class RentalController {
   private rentalService: IRentalService;
@@ -17,7 +21,7 @@ class RentalController {
     this.rentalService = rentalService;
   }
 
-  @Post('/')
+  @Post('/', [validationBodyRental])
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const PAYLOAD: IRental = req.body;
@@ -34,7 +38,7 @@ class RentalController {
     }
   }
 
-  @Get('/')
+  @Get('/', [validationQueryRental])
   async read(req: Request, res: Response): Promise<Response> {
     try {
       const PAYLOAD = req.query;
@@ -51,7 +55,7 @@ class RentalController {
     }
   }
 
-  @Get('/:id')
+  @Get('/:id', [ValidationParamsID])
   async readID(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -68,7 +72,7 @@ class RentalController {
     }
   }
 
-  @Put('/:id')
+  @Put('/:id', [ValidationParamsID, validationBodyRental])
   async update(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -87,7 +91,7 @@ class RentalController {
     }
   }
 
-  @Delete('/:id')
+  @Delete('/:id', [ValidationParamsID])
   async delete(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;

@@ -9,6 +9,8 @@ import { IRentalService } from '../interfaces/Rental/IRentalService';
 import ViaCep from '../api/ViaCep.api';
 import IsConflit from '../utils/rules/isConflit';
 
+import NotFound from '../errors/http/NotFound';
+
 @Injectable()
 class RentalService implements IRentalService {
   private rentalRepository: IRentalRepository;
@@ -38,17 +40,29 @@ class RentalService implements IRentalService {
   async readID(id: string): Promise<IRental> {
     const ID_RENTAL: IRental = await this.rentalRepository.readID(id);
 
+    if (!ID_RENTAL) {
+      throw new NotFound(`rental of id '${id}' not found`);
+    }
+
     return ID_RENTAL;
   }
 
   async update(id: string, payload: IRental): Promise<IRental> {
     const NEW_RENTAL = await this.rentalRepository.update(id, payload);
 
+    if (!NEW_RENTAL) {
+      throw new NotFound(`rental of id '${id}' not found`);
+    }
+
     return NEW_RENTAL;
   }
 
   async delete(id: string): Promise<IRental> {
     const DELETE_RENTAL = await this.rentalRepository.delete(id);
+
+    if (!DELETE_RENTAL) {
+      throw new NotFound(`rental of id '${id}' not found`);
+    }
 
     return DELETE_RENTAL;
   }
