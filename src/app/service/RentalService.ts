@@ -40,6 +40,12 @@ class RentalService implements IRentalService {
 
     return ID_RENTAL;
   }
+
+  async update(id: string, payload: IRental): Promise<IRental> {
+    const NEW_RENTAL = await this.rentalRepository.update(id, payload);
+
+    return NEW_RENTAL;
+  }
 }
 
 export default RentalService;
