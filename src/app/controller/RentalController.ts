@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {
-  Controller, Get, Post, Put,
+  Controller, Get, Post, Put, Delete,
 } from '@decorators/express';
 import { Inject } from '@decorators/di';
 
@@ -77,6 +77,23 @@ class RentalController {
       const RESULT: IRental = await this.rentalService.update(id, PAYLOAD);
 
       return res.status(200).json(RESULT);
+    } catch (error) {
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Delete('/:id')
+  async delete(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const RESULT: IRental = await this.rentalService.delete(id);
+
+      return res.status(204).json(RESULT);
     } catch (error) {
       return res.status(error.statusCode).json({
         details: {

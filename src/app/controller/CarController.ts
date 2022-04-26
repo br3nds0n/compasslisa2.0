@@ -119,7 +119,7 @@ class CarController {
 
       const RESULT = await this.carService.updateAccessory(id, accessoryId, PAYLOAD);
 
-      return res.status(200).json(RESULT);
+      return res.status(204).json(RESULT);
     } catch (error) {
       return res.status(error.statusCode).json({
         details: {

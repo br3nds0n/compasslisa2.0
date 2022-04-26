@@ -97,7 +97,7 @@ class PersonController {
       const { id } = req.params;
       const RESULT: IPerson = await this.personService.delete(id);
 
-      return res.status(200).json(RESULT);
+      return res.status(204).json(RESULT);
     } catch (error) {
       return res.status(error.statusCode).json({
         details: {

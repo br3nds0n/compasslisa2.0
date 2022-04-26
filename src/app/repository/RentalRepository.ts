@@ -36,6 +36,12 @@ class RentalRepository implements IRentalRepository {
 
     return NEW_RENTAL;
   }
+
+  async delete(id: string): Promise<IRental> {
+    const DELETE_RENTAL = await this.rentalRepository.findByIdAndDelete(id);
+
+    return DELETE_RENTAL;
+  }
 }
 
 export default RentalRepository;
