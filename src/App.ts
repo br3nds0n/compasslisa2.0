@@ -17,10 +17,10 @@ class App {
   }
 
   static async start() {
-    const app: App = new App();
+    const APP: App = new App();
     await database.connect();
 
-    return app.express;
+    return APP.express;
   }
 
   private middlewares(): void {

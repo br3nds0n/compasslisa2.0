@@ -4,11 +4,11 @@ import routes from './v1';
 
 class Routes {
   static init(): Router {
-    const router: Router = Router();
+    const ROUTER: Router = Router();
 
-    router.use('/v1', routes.v1());
+    ROUTER.use('/v1', routes.v1());
 
-    return router;
+    return ROUTER;
   }
 }
 
