@@ -1,5 +1,8 @@
 import { Router } from 'express';
 import { attachControllers } from '@decorators/express';
+import swaggerUI from 'swagger-ui-express';
+
+import swaggerDoc from './documentation/swagger.json';
 
 import CarController from '../../app/controller/CarController';
 import PersonController from '../../app/controller/PersonController';
@@ -8,10 +11,10 @@ import RentalController from '../../app/controller/RentalController';
 
 class RoutesV1 {
   static v1(): Router {
-    const router: Router = Router();
+    const ROUTER: Router = Router();
 
     attachControllers(
-      router,
+      ROUTER,
       [
         CarController,
         PersonController,
@@ -19,7 +22,10 @@ class RoutesV1 {
         RentalController,
       ],
     );
-    return router;
+
+    ROUTER.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+
+    return ROUTER;
   }
 }
 
