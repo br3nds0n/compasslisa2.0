@@ -1,2 +1,2 @@
-web:yarn build
-web:yarn start
+web:npm run build
+web:npm run start
