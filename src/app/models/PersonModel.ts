@@ -15,6 +15,8 @@ const PERSON_MODEL: Schema = new Schema(
     cpf: {
       type: String,
       unique: true,
+      minLength: 11,
+      maxLength: 11,
       required: true,
     },
     data_nascimento: {
@@ -50,6 +52,14 @@ PERSON_MODEL.pre('save', async function (next): Promise<void> {
   this.senha = hash;
 
   next();
+});
+
+PERSON_MODEL.method('toJSON', function () {
+  const { ...person } = this.toObject();
+
+  person.cpf = person.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+
+  return person;
 });
 
 const PERSON = model<IPerson>('Pessoas', PERSON_MODEL);
