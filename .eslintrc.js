@@ -26,5 +26,6 @@ module.exports = {
     eqeqeq: 'off',
     'no-plusplus': 'off',
     'no-await-in-loop': 'off',
+    'func-names': 'off',
   },
 };

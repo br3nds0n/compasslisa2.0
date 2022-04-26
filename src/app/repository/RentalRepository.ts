@@ -30,6 +30,18 @@ class RentalRepository implements IRentalRepository {
 
     return ID_RENTAL;
   }
+
+  async update(id: string, payload: IRental): Promise<IRental> {
+    const NEW_RENTAL = await this.rentalRepository.findByIdAndUpdate(id, payload);
+
+    return NEW_RENTAL;
+  }
+
+  async delete(id: string): Promise<IRental> {
+    const DELETE_RENTAL = await this.rentalRepository.findByIdAndDelete(id);
+
+    return DELETE_RENTAL;
+  }
 }
 
 export default RentalRepository;

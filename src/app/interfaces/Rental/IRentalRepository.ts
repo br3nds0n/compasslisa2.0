@@ -4,4 +4,6 @@ export interface IRentalRepository {
   create: (payload: IRental) => Promise<IRental>
   read: (payload) => Promise<IRental | IRental[]>
   readID: (id: string) => Promise<IRental>
+  update: (id: string, payload: IRental) => Promise<IRental>
+  delete: (id: string) => Promise<IRental>
 }
